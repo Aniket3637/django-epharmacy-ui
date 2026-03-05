@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+
+{% block title %}Browse Medicines - HealthMeds{% endblock %}
+
+{% block content %}
+
+<!-- Breadcrumb -->
+<nav class="bg-gray-50 py-3 border-b">
+    <div class="container mx-auto px-4 text-sm text-gray-600">
+        <a href="/" class="text-primary hover:underline">Home</a> / <span class="text-gray-800 font-semibold">Medicines</span>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        <!-- Sidebar Filters -->
+        <aside class="lg:col-span-1">
+            <div class="bg-white rounded-lg shadow-md p-6 sticky top-20">
+                <h3 class="text-lg font-bold mb-6">Filters</h3>
+                
+                <!-- Category Filter -->
+                <div class="mb-6 pb-6 border-b">
+                    <h4 class="font-semibold mb-3 text-gray-800">Category</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2 rounded" checked>
+                            <span class="text-sm text-gray-700">All Categories</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2 rounded">
+                            <span class="text-sm text-gray-700">Pain Relief</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2 rounded">
+                            <span class="text-sm text-gray-700">Cold & Flu</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2 rounded">
+                            <span class="text-sm text-gray-700">Vitamins</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2 rounded">
+                            <span class="text-sm text-gray-700">Skin Care</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Price Filter -->
+                <div class="mb-6 pb-6 border-b">
+                    <h4 class="font-semibold mb-3 text-gray-800">Price Range</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="price" class="mr-2" checked>
+                            <span class="text-sm text-gray-700">All Prices</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="price" class="mr-2">
+                            <span class="text-sm text-gray-700">Below ₹100</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="price" class="mr-2">
+                            <span class="text-sm text-gray-700">₹100 - ₹500</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="price" class="mr-2">
+                            <span class="text-sm text-gray-700">₹500 - ₹1000</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="price" class="mr-2">
+                            <span class="text-sm text-gray-700">Above ₹1000</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Rating Filter -->
+                <div class="mb-6">
+                    <h4 class="font-semibold mb-3 text-gray-800">Rating</h4>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2 rounded">
+                            <div class="flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-700 ml-2">(1000+)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2 rounded">
+                            <div class="flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-700 ml-2">& up</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary-dark transition">
+                    Apply Filters
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Products Grid -->
+        <main class="lg:col-span-3">
+            <!-- Sort and View Options -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                <h2 class="text-2xl font-bold">All Medicines</h2>
+                <div class="flex items-center gap-4">
+                    <select class="border rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                        <option>Sort by: Relevance</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Newest First</option>
+                        <option>Most Popular</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                
+                <!-- Product Card Template -->
+                {% for i in "123456" %}
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover-scale">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/300x200" alt="Product" class="w-full h-48 object-cover">
+                        {% if forloop.counter == 3 %}
+                        <span class="absolute top-2 left-2 bg-success text-white text-xs px-2 py-1 rounded">New</span>
+                        {% elif forloop.counter == 5 %}
+                        <span class="absolute top-2 left-2 bg-success text-white text-xs px-2 py-1 rounded">30% OFF</span>
+                        {% endif %}
+                        {% if forloop.counter in "124" %}
+                        <span class="absolute top-2 right-2 bg-warning text-white text-xs px-2 py-1 rounded">Rx Required</span>
+                        {% endif %}
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-800 mb-2 line-clamp-2">{% if forloop.counter == 1 %}Aspirin 500mg{% elif forloop.counter == 2 %}Ibuprofen 400mg{% elif forloop.counter == 3 %}Multivitamin Capsules{% elif forloop.counter == 4 %}Cough Syrup 200ml{% elif forloop.counter == 5 %}Face Wash Herbal{% else %}Pain Relief Gel{% endif %}</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                {% if forloop.counter == 1 %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                {% else %}
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                {% endif %}
+                            </div>
+                            <span class="text-xs text-gray-500 ml-2">({{ forloop.counter }}23)</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-3">By Premium Pharma</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="text-gray-400 line-through text-sm">₹{% if forloop.counter == 1 %}150{% elif forloop.counter == 2 %}200{% elif forloop.counter == 3 %}350{% elif forloop.counter == 4 %}180{% elif forloop.counter == 5 %}250{% else %}300{% endif %}</span>
+                                <span class="text-primary font-bold text-lg ml-2">₹{% if forloop.counter == 1 %}75{% elif forloop.counter == 2 %}100{% elif forloop.counter == 3 %}199{% elif forloop.counter == 4 %}90{% elif forloop.counter == 5 %}175{% else %}200{% endif %}</span>
+                            </div>
+                            <span class="text-xs text-success font-semibold">{% if forloop.counter == 5 %}30% OFF{% elif forloop.counter == 1 %}50% OFF{% else %}Save 45%{% endif %}</span>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary-dark transition flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+            
+            <!-- Pagination -->
+            <div class="flex justify-center items-center gap-2 py-8">
+                <button class="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">← Previous</button>
+                <button class="px-4 py-2 bg-primary text-white rounded-lg font-semibold">1</button>
+                <button class="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">2</button>
+                <button class="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">3</button>
+                <span class="px-3 py-2 text-gray-600">...</span>
+                <button class="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">10</button>
+                <button class="px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">Next →</button>
+            </div>
+        </main>
+    </div>
+</div>
+
+{% endblock %}
